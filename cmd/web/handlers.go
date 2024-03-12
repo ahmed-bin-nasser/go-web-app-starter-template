@@ -112,7 +112,7 @@ func (app *application) postLogin(w http.ResponseWriter, r *http.Request) {
 	session.Values[timestampKey] = time.Now()
 	session.Options = &sessions.Options{
 		HttpOnly: true,
-		MaxAge:   int((time.Duration(app.config.CookieMaxAge) * time.Hour).Seconds()),
+		MaxAge:   86400 * app.config.CookieMaxAge,
 	}
 
 	err = session.Save(r, w)
