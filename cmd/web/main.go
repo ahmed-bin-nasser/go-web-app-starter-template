@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"flag"
 	"fmt"
 	"html/template"
@@ -9,6 +10,7 @@ import (
 	"os"
 	"runtime/debug"
 	"sync"
+	"time"
 
 	"example.com/internal/database"
 
@@ -18,6 +20,8 @@ import (
 )
 
 func main() {
+	gob.Register(time.Time{})
+
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug}))
 
 	err := run(logger)
