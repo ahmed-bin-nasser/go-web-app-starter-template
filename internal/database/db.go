@@ -33,5 +33,9 @@ func New(dsn string) (*DB, error) {
 		return nil, err
 	}
 
+	if err := gormDb.AutoMigrate(&User{}); err != nil {
+		return nil, err
+	}
+
 	return &DB{gormDb}, nil
 }
