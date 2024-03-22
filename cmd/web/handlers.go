@@ -68,8 +68,7 @@ func (app *application) postRegistration(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	data := app.newTemplateData(r)
-	app.render(w, r, http.StatusSeeOther, "login", data)
+	http.Redirect(w, r, "/login", http.StatusSeeOther)
 }
 
 func (app *application) postLogin(w http.ResponseWriter, r *http.Request) {
@@ -144,6 +143,5 @@ func (app *application) postLogout(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := app.newTemplateData(r)
-	app.render(w, r, http.StatusSeeOther, "login", data)
+	http.Redirect(w, r, "/login", http.StatusSeeOther)
 }

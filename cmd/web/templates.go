@@ -11,7 +11,7 @@ import (
 func newTemplateCache() (map[string]*template.Template, error) {
 	cache := map[string]*template.Template{}
 
-	pages, err := assets.EmbeddedFiles.ReadDir("templates/pages")
+	pages, err := assets.TemplateFiles.ReadDir("templates/pages")
 	if err != nil {
 		return nil, err
 	}
@@ -20,7 +20,7 @@ func newTemplateCache() (map[string]*template.Template, error) {
 		name := strings.Split(page.Name(), ".")[0]
 		files := []string{"templates/base.go.tmpl", "templates/partials/*.go.tmpl", "templates/pages/" + page.Name()}
 
-		ts, err := template.New("").Funcs(funcs.TemplateFuncs).ParseFS(assets.EmbeddedFiles, files...)
+		ts, err := template.New("").Funcs(funcs.TemplateFuncs).ParseFS(assets.TemplateFiles, files...)
 		if err != nil {
 			return nil, err
 		}

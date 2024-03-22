@@ -18,8 +18,9 @@ func (app *application) isAuthenticated(r *http.Request) bool {
 
 func (app *application) newTemplateData(r *http.Request) map[string]any {
 	data := map[string]any{
-		"Version":        app.config.Version,
-		csrf.TemplateTag: csrf.TemplateField(r),
+		"Version":         app.config.Version,
+		"IsAuthenticated": app.isAuthenticated(r),
+		csrf.TemplateTag:  csrf.TemplateField(r),
 	}
 
 	return data

@@ -18,7 +18,7 @@ func (app *application) routes() http.Handler {
 	mux.Use(app.securityHeaders)
 	mux.Use(app.getCsrfMiddleware())
 
-	fileServer := http.FileServer(http.FS(assets.EmbeddedFiles))
+	fileServer := http.FileServer(http.FS(assets.StaticFiles))
 	mux.Handle("/static/*", fileServer)
 
 	mux.Get("/", app.home)

@@ -28,7 +28,7 @@ func NamedTemplateWithHeaders(w http.ResponseWriter, status int, data any, heade
 		patterns[i] = "templates/" + patterns[i]
 	}
 
-	ts, err := template.New("").Funcs(funcs.TemplateFuncs).ParseFS(assets.EmbeddedFiles, patterns...)
+	ts, err := template.New("").Funcs(funcs.TemplateFuncs).ParseFS(assets.TemplateFiles, patterns...)
 	if err != nil {
 		return err
 	}
